@@ -11,6 +11,33 @@
         }
       },
       {
+        "package": "PerfectCZlib",
+        "repositoryURL": "https://github.com/PerfectlySoft/Perfect-CZlib-src.git",
+        "state": {
+          "branch": null,
+          "revision": "2002034d47e9d57a695fb33ad2e09f136868b406",
+          "version": "0.0.3"
+        }
+      },
+      {
+        "package": "PerfectLib",
+        "repositoryURL": "https://github.com/PerfectlySoft/PerfectLib.git",
+        "state": {
+          "branch": null,
+          "revision": "fc5186e209f0621fe50390ec1fb02bd9d3ef0e57",
+          "version": "3.0.2"
+        }
+      },
+      {
+        "package": "PerfectZip",
+        "repositoryURL": "https://github.com/PerfectlySoft/Perfect-Zip.git",
+        "state": {
+          "branch": "master",
+          "revision": "13cc4c99e20284a00795d81d3e92a99e6dbcdc69",
+          "version": null
+        }
+      },
+      {
         "package": "ScannerUtils",
         "repositoryURL": "https://github.com/smud/ScannerUtils.git",
         "state": {
