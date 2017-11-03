@@ -14,7 +14,7 @@ public class Zipper {
         
     }
     
-    public func zip(files: [DownloadedFile]) -> Data? {
+    public func zip(files: [DownloadedFile], name: String? = nil) -> Data? {
         let supportFolder = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first!
         let taskId = UUID.init().uuidString
         let folder = supportFolder.appendingPathComponent(taskId, isDirectory: true)
@@ -26,7 +26,8 @@ public class Zipper {
             try! FileManager.default.removeItem(at: folder)
         }
         let zip = Zip.init()
-        let zipUrl = supportFolder.appendingPathComponent(taskId, isDirectory: false).appendingPathExtension("zip")
+        let zipName = name ?? taskId
+        let zipUrl = supportFolder.appendingPathComponent(zipName, isDirectory: false).appendingPathExtension("zip")
         let status = zip.zipFiles(paths: [folder.path], zipFilePath: zipUrl.path, overwrite: true, password: nil)
         
         if status == .ZipSuccess {

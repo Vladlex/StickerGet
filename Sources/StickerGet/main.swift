@@ -25,17 +25,28 @@ extension Array {
 
 while let update = bot.nextUpdateSync() {
     if let message = update.message, let from = message.from, let text = message.text {
-        let stickerSetName = text
+        let parts = text.components(separatedBy: .whitespacesAndNewlines)
+        guard parts.count > 0 else {
+            continue
+        }
+        
+        var shouldAddEmojiToName = false
+        if parts.count > 1 {
+            let args = parts[1..<parts.count]
+            if args.contains("-emoji") {
+                shouldAddEmojiToName = true
+            }
+        }
+        
+        let stickerSetName = parts.first!
         if let set = bot.getStickerSet(name: stickerSetName) {
-            let files: [File] = set.sources.firstAsArray.flatMap({ (source) in
-                return bot.getFileSync(file_id: source.fileId)
+            
+            let downloadedFiles: [DownloadedFile] = set.sources.flatMap({ (source) in
+                return bot.downloadSticker(source, token: token, prefixesNameByEmoji: true)
             })
-            let downloadedFiles: [DownloadedFile] = files.flatMap({ file in
-                let url = file.url(token: token)
-                return DownloadedFile.init(url: url)
-            })
+            
             let zipper = Zipper.init()
-            guard let data = zipper.zip(files: downloadedFiles) else {
+            guard let data = zipper.zip(files: downloadedFiles, name: stickerSetName) else {
                 bot.sendMessageAsync(chat_id: from.id,
                                      text: "Fail to zip files")
                 continue

@@ -8,7 +8,9 @@
 import Foundation
 
 public struct DownloadedFile {
-    public let name: String
+    
+    public var name: String
+    
     public let data: Data
     
     public init(name: String, data: Data) {
