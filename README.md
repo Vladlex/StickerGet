@@ -10,7 +10,7 @@ To get token – create your bot using FatherBot. See details here: https://core
 When you create your bot – start a conversation with him.
 Run project in Xcode (you can debug while running bot).
 
-In Telegram: just write bot the name of the sticker set. Wait for a while and bot responds you with a zip file with sickers.
+In Telegram: just write the the sticker set name. Wait for a while and bot responds you with a zip file with sickers.
 To get emoji-prefixed files in zip archive – add " -emoji" after sticker set name. Like "animals -emoji".
 
 # Based on TelegramBotSDK
